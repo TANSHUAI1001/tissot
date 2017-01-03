@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.shuai.tissot.dao.SuccessRecordDao">
+    <insert id="insertSuccessOperate">
+        <!-- 主键冲突产生错误，忽略ignore返回0， 过滤重复-->
+        insert ignore into success_record(product_id, user_phone)
+        values(#{productId},#{userPhone})
+    </insert>
+    
+    <select id="queryByIdWithProduct" resultType="SuccessRecord">
+        <!-- 将结果映射到SuccessRecord同时映射到类中的Product类属性 -->
+        select
+            sr.product_id,
+            sr.user_phone,
+            sr.create_time,
+            sr.state,
+            p.product_id "product.product_id",
+            p.name "product.name",
+            p.number "product.number",
+            p.start_time "product.start_time",
+            p.end_time "product.end_time",
+            p.create_time "product.create_time"
+        from success_record sr
+        inner join product p on sr.product_id = p.product_id
+        where sr.product_id = #{productId} AND sr.user_phone = #{userPhone}
+    </select>
+</mapper>
