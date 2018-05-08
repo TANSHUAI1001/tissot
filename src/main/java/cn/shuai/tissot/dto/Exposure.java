@@ -7,7 +7,7 @@ package cn.shuai.tissot.dto;
 /**
  * 暴露秒杀地址DTO
  */
-public class Exposer {
+public class Exposure {
 
     private boolean exposed;
 
@@ -21,20 +21,20 @@ public class Exposer {
 
     private long end;
 
-    public Exposer(boolean exposed, String md5, long productId) {
+    public Exposure(boolean exposed, String md5, long productId) {
         this.exposed = exposed;
         this.md5 = md5;
         this.productId = productId;
     }
 
-    public Exposer(boolean exposed, long now, long start, long end) {
+    public Exposure(boolean exposed, long now, long start, long end) {
         this.exposed = exposed;
         this.now = now;
         this.start = start;
         this.end = end;
     }
 
-    public Exposer(boolean exposed, long productId, long now, long start, long end) {
+    public Exposure(boolean exposed, long productId, long now, long start, long end) {
         this.exposed = exposed;
         this.productId = productId;
         this.now = now;
@@ -42,7 +42,7 @@ public class Exposer {
         this.end = end;
     }
 
-    public Exposer(boolean exposed, long productId) {
+    public Exposure(boolean exposed, long productId) {
         this.exposed = exposed;
         this.productId = productId;
     }
@@ -97,7 +97,7 @@ public class Exposer {
 
     @Override
     public String toString() {
-        return "Exposer{" +
+        return "Exposure{" +
                 "exposed=" + exposed +
                 ", md5='" + md5 + '\'' +
                 ", productId=" + productId +

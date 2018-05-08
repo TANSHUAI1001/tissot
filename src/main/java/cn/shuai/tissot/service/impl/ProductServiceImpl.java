@@ -1,8 +1,8 @@
-package cn.shuai.tissot.service.Impl;
+package cn.shuai.tissot.service.impl;
 
 import cn.shuai.tissot.dao.ProductDao;
 import cn.shuai.tissot.dao.SuccessRecordDao;
-import cn.shuai.tissot.dto.Exposer;
+import cn.shuai.tissot.dto.Exposure;
 import cn.shuai.tissot.dto.ProductExecution;
 import cn.shuai.tissot.entity.Product;
 import cn.shuai.tissot.entity.SuccessRecord;
@@ -46,24 +46,24 @@ public class ProductServiceImpl implements ProductService{
         return productDao.queryById(productId);
     }
 
-    public Exposer exportProductUrl(long productId) {
+    public Exposure exportProductUrl(long productId) {
         Product product = productDao.queryById(productId);
         if(product == null){
-            return new Exposer(false,productId);
+            return new Exposure(false,productId);
         }
         Date startTime = product.getStartTime();
         Date endTime = product.getEndTime();
         Date nowTime = new Date();
         if(nowTime.getTime() < startTime.getTime()
                 ||nowTime.getTime() > endTime.getTime()){
-            return new Exposer(false,productId,nowTime.getTime()
+            return new Exposure(false,productId,nowTime.getTime()
                     ,startTime.getTime(),endTime.getTime());
         }
         String md5 = getMd5(productId);
-        return new Exposer(true,md5,productId);
+        return new Exposure(true,md5,productId);
     }
 
-    @Transactional
+
     /**
      * 使用注解控制事务方法的优点：
      * 1：
@@ -72,6 +72,7 @@ public class ProductServiceImpl implements ProductService{
      *
      * mysql 行级锁
      */
+    @Transactional
     public ProductExecution executeProduct(long productId, long userPhone, String md5) throws ProductException, RepeatKillException, ProductCloseExcption {
         if(md5 == null || !md5.equals(getMd5(productId))){
             throw new ProductException("data has been rewrite!!!");

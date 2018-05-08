@@ -1,6 +1,6 @@
 package cn.shuai.tissot.service;
 
-import cn.shuai.tissot.dto.Exposer;
+import cn.shuai.tissot.dto.Exposure;
 import cn.shuai.tissot.dto.ProductExecution;
 import cn.shuai.tissot.entity.Product;
 import cn.shuai.tissot.exception.ProductCloseExcption;
@@ -17,7 +17,7 @@ public interface ProductService {
 
     Product getProductById(long productId);
 
-    Exposer exportProductUrl(long productId);
+    Exposure exportProductUrl(long productId);
 
     ProductExecution executeProduct(long productId, long userPhone, String md5)
             throws ProductException,RepeatKillException,ProductCloseExcption;

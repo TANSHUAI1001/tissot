@@ -1,6 +1,6 @@
 package cn.shuai.tissot.service;
 
-import cn.shuai.tissot.dto.Exposer;
+import cn.shuai.tissot.dto.Exposure;
 import cn.shuai.tissot.dto.ProductExecution;
 import cn.shuai.tissot.entity.Product;
 import cn.shuai.tissot.exception.ProductCloseExcption;
@@ -14,8 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by shuai on 2017/1/2.
@@ -46,7 +44,7 @@ public class ProductServiceTest {
     @Test
     public void exportProductUrl() throws Exception {
         long id = 1000;
-        Exposer exposer = productService.exportProductUrl(id);
+        Exposure exposer = productService.exportProductUrl(id);
         logger.info("exposer={}",exposer);
     }
 
@@ -62,7 +60,7 @@ public class ProductServiceTest {
     @Test
     public void testExcecute() throws Exception {
         long id = 1004;
-        Exposer exposer = productService.exportProductUrl(id);
+        Exposure exposer = productService.exportProductUrl(id);
         if(exposer.isExposed()){
             logger.warn("exposer = {}",exposer);
             long phone = 1234567892;
