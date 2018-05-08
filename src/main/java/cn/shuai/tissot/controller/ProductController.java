@@ -1,5 +1,6 @@
 package cn.shuai.tissot.controller;
 
+import cn.shuai.tissot.dto.Exposure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,31 +22,30 @@ import java.util.Map;
 public class ProductController {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-//    @RequestMapping(name="/",method = RequestMethod.GET)
-//    public String getIndex(){
-//        return "index";
-//    }
+    @RequestMapping(value = "/welcome",method = RequestMethod.GET)
+    public String getIndex(){
+        return "/welcome";
+    }
 
-    @RequestMapping(name="/name",method = RequestMethod.GET)
-    public ResponseEntity<Map<String, Object>> getName(){
-        Map<String,String> map = new HashMap<String, String>();
-        map.put("name","name");
-        map.put("value","0");
-        return new ResponseEntity(map, HttpStatus.OK);
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String getTest(){
+        return "/test";
+    }
+
+    @RequestMapping(value = "/name",method = RequestMethod.GET)
+    public ResponseEntity<Exposure> getName(){
+        Exposure exposure = new Exposure(false,"md5",1234L);
+        return new ResponseEntity<Exposure>(exposure,HttpStatus.OK);
     }
 
     @RequestMapping(value = "/value", method = RequestMethod.GET)
     @ResponseBody
-    public Object getValue() {
+    public ResponseEntity getValue() {
         Map<String, String> map = new HashMap<String, String>();
         map.put("name", "name");
         map.put("value", "1");
         logger.info(String.valueOf(map));
-        return map;
+        return ResponseEntity.ok(map);
     }
 
-    public String getTime() {
-        Date now = new Date();
-        return now.toString();
-    }
 }
