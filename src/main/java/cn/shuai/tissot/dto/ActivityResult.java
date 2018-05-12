@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class ActivityResult<T> {
     private boolean success;
 
-    private String errorCode;
+    private Integer errorCode;
 
     private String errorMessage;
 
@@ -21,7 +21,7 @@ public class ActivityResult<T> {
         this.data = data;
     }
 
-    public ActivityResult(boolean success, String errorCode, String errorMessage) {
+    public ActivityResult(boolean success, int errorCode, String errorMessage) {
         this.success = success;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
@@ -41,11 +41,11 @@ public class ActivityResult<T> {
         this.success = success;
     }
 
-    public String getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(Integer errorCode) {
         this.errorCode = errorCode;
     }
 
