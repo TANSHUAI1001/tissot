@@ -114,6 +114,11 @@
       <artifactId>freemarker</artifactId>
       <version>2.3.23</version>
     </dependency>
+    <dependency>
+      <groupId>com.baidu.aip</groupId>
+      <artifactId>java-sdk</artifactId>
+      <version>4.3.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>tissot</finalName>

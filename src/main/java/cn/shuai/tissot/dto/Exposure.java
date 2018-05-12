@@ -13,7 +13,7 @@ public class Exposure {
 
     private String md5;
 
-    private long productId;
+    private long activityId;
     //系统当前时间（毫秒）
     private long now;
 
@@ -21,10 +21,10 @@ public class Exposure {
 
     private long end;
 
-    public Exposure(boolean exposed, String md5, long productId) {
+    public Exposure(boolean exposed, String md5, long activityId) {
         this.exposed = exposed;
         this.md5 = md5;
-        this.productId = productId;
+        this.activityId = activityId;
     }
 
     public Exposure(boolean exposed, long now, long start, long end) {
@@ -34,17 +34,17 @@ public class Exposure {
         this.end = end;
     }
 
-    public Exposure(boolean exposed, long productId, long now, long start, long end) {
+    public Exposure(boolean exposed, long activityId, long now, long start, long end) {
         this.exposed = exposed;
-        this.productId = productId;
+        this.activityId = activityId;
         this.now = now;
         this.start = start;
         this.end = end;
     }
 
-    public Exposure(boolean exposed, long productId) {
+    public Exposure(boolean exposed, long activityId) {
         this.exposed = exposed;
-        this.productId = productId;
+        this.activityId = activityId;
     }
 
     public boolean isExposed() {
@@ -63,12 +63,12 @@ public class Exposure {
         this.md5 = md5;
     }
 
-    public long getProductId() {
-        return productId;
+    public long getActivityId() {
+        return activityId;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setActivityId(long activityId) {
+        this.activityId = activityId;
     }
 
     public long getNow() {
@@ -100,7 +100,7 @@ public class Exposure {
         return "Exposure{" +
                 "exposed=" + exposed +
                 ", md5='" + md5 + '\'' +
-                ", productId=" + productId +
+                ", activityId=" + activityId +
                 ", now=" + now +
                 ", start=" + start +
                 ", end=" + end +

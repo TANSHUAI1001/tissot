@@ -1,14 +1,14 @@
 package cn.shuai.tissot.dto;
 
 import cn.shuai.tissot.entity.SuccessRecord;
-import cn.shuai.tissot.enums.ProductStatEnum;
+import cn.shuai.tissot.enums.ActivityStatEnum;
 
 /**
  * Created by shuai on 2016/12/31.
  */
-public class ProductExecution {
+public class ActivityExecution {
 
-    private long productId;
+    private long activityId;
 
     private int state;
 
@@ -16,25 +16,25 @@ public class ProductExecution {
 
     private SuccessRecord successRecord;
 
-    public ProductExecution(long productId, ProductStatEnum stateEnum, SuccessRecord successRecord) {
-        this.productId = productId;
+    public ActivityExecution(long activityId, ActivityStatEnum stateEnum, SuccessRecord successRecord) {
+        this.activityId = activityId;
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
         this.successRecord = successRecord;
     }
 
-    public ProductExecution(long productId, ProductStatEnum stateEnum) {
-        this.productId = productId;
+    public ActivityExecution(long activityId, ActivityStatEnum stateEnum) {
+        this.activityId = activityId;
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
     }
 
-    public long getProductId() {
-        return productId;
+    public long getActivityId() {
+        return activityId;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setActivityId(long activityId) {
+        this.activityId = activityId;
     }
 
     public int getState() {
@@ -63,8 +63,8 @@ public class ProductExecution {
 
     @Override
     public String toString() {
-        return "ProductExecution{" +
-                "productId=" + productId +
+        return "ActivityExecution{" +
+                "activityId=" + activityId +
                 ", state=" + state +
                 ", stateInfo='" + stateInfo + '\'' +
                 ", successRecord=" + successRecord +

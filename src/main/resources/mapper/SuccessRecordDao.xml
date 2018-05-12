@@ -5,25 +5,25 @@
 <mapper namespace="cn.shuai.tissot.dao.SuccessRecordDao">
     <insert id="insertSuccessOperate">
         <!-- 主键冲突产生错误，忽略ignore返回0， 过滤重复-->
-        insert ignore into success_record(product_id, user_phone)
-        values(#{productId},#{userPhone})
+        insert ignore into success_record(activity_id, user_phone)
+        values(#{activityId},#{userPhone})
     </insert>
     
-    <select id="queryByIdWithProduct" resultType="SuccessRecord">
-        <!-- 将结果映射到SuccessRecord同时映射到类中的Product类属性 -->
+    <select id="queryByIdWithActivity" resultType="SuccessRecord">
+        <!-- 将结果映射到SuccessRecord同时映射到类中的Activity类属性 -->
         select
-            sr.product_id,
+            sr.activity_id,
             sr.user_phone,
             sr.create_time,
             sr.state,
-            p.product_id "product.product_id",
-            p.name "product.name",
-            p.number "product.number",
-            p.start_time "product.start_time",
-            p.end_time "product.end_time",
-            p.create_time "product.create_time"
+            p.activity_id "activity.activity_id",
+            p.name "activity.name",
+            p.number "activity.number",
+            p.start_time "activity.start_time",
+            p.end_time "activity.end_time",
+            p.create_time "activity.create_time"
         from success_record sr
-        inner join product p on sr.product_id = p.product_id
-        where sr.product_id = #{productId} AND sr.user_phone = #{userPhone}
+        inner join activity p on sr.activity_id = p.activity_id
+        where sr.activity_id = #{activityId} AND sr.user_phone = #{userPhone}
     </select>
 </mapper>

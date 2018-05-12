@@ -2,28 +2,28 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.shuai.tissot.dao.ProductDao">
+<mapper namespace="cn.shuai.tissot.dao.ActivityDao">
     <!-- 目的为DAO接口方法提供sql语句配置 -->
     <update id="reduceNumber" >
         update
-            product
+            activity
         set
             number = number - 1
-        where product_id = #{productId}
+        where activity_id = #{activityId}
         and start_time <![CDATA[ <= ]]> #{operateTime}
         and end_time >= #{operateTime}
         and number > 0
     </update>
 
-    <select id="queryById" resultType="Product" parameterType="long">
-        select product_id, name, number, start_time, end_time, create_time
-        from product
-        where product_id = #{productId}
+    <select id="queryById" resultType="Activity" parameterType="long">
+        select activity_id, name, number, start_time, end_time, create_time
+        from activity
+        where activity_id = #{activityId}
     </select>
 
-    <select id="queryAll" resultType="Product">
-        select product_id, name, number, start_time, end_time, create_time
-        from product
+    <select id="queryAll" resultType="Activity">
+        select activity_id, name, number, start_time, end_time, create_time
+        from activity
         order by create_time desc
         limit #{offset},#{limit}
     </select>

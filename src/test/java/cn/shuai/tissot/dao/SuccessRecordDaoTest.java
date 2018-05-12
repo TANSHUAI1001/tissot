@@ -26,8 +26,8 @@ public class SuccessRecordDaoTest {
     }
 
     @Test
-    public void queryByIdWithProduct() throws Exception {
-        SuccessRecord record = successRecordDao.queryByIdWithProduct(1000L,1234567890);
+    public void queryByIdWithActivity() throws Exception {
+        SuccessRecord record = successRecordDao.queryByIdWithActivity(1000L,1234567890);
         System.out.println(record);
     }
 

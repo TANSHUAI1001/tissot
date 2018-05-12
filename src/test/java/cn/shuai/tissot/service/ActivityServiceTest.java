@@ -1,9 +1,9 @@
 package cn.shuai.tissot.service;
 
+import cn.shuai.tissot.dto.ActivityExecution;
 import cn.shuai.tissot.dto.Exposure;
-import cn.shuai.tissot.dto.ProductExecution;
-import cn.shuai.tissot.entity.Product;
-import cn.shuai.tissot.exception.ProductCloseExcption;
+import cn.shuai.tissot.entity.Activity;
+import cn.shuai.tissot.exception.ActivityCloseException;
 import cn.shuai.tissot.exception.RepeatKillException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,60 +22,60 @@ import java.util.List;
 @ContextConfiguration({
         "classpath:spring-dao.xml",
         "classpath:spring-service.xml"})
-public class ProductServiceTest {
+public class ActivityServiceTest {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private ProductService productService;
+    private ActivityService activityService;
 
     @Test
-    public void getProductList() throws Exception {
-        List<Product> list = productService.getProductList();
+    public void getActivityList() throws Exception {
+        List<Activity> list = activityService.getActivityList();
         logger.info("list={}",list);
     }
 
     @Test
-    public void getProductById() throws Exception {
+    public void getActivityById() throws Exception {
         long id = 1004;
-        Product product = productService.getProductById(id);
-        logger.info("product={}",product);
+        Activity activity = activityService.getActivityById(id);
+        logger.info("activity={}", activity);
     }
 
     @Test
-    public void exportProductUrl() throws Exception {
+    public void exportActivityUrl() throws Exception {
         long id = 1000;
-        Exposure exposer = productService.exportProductUrl(id);
-        logger.info("exposer={}",exposer);
+        Exposure exposure = activityService.exportActivityUrl(id);
+        logger.info("exposure={}",exposure);
     }
 
     @Test
-    public void executeProduct() throws Exception {
+    public void executeActivity() throws Exception {
         long id = 1000;
         long phone = 1234567890;
         String md5 = "2ac2926b326d3fc40b4e370a61f8a7cb";
-        ProductExecution execution = productService.executeProduct(id,phone,md5);
+        ActivityExecution execution = activityService.executeActivity(id,phone,md5);
         logger.info("execution={}",execution);
     }
 
     @Test
-    public void testExcecute() throws Exception {
+    public void testExecute() throws Exception {
         long id = 1004;
-        Exposure exposer = productService.exportProductUrl(id);
-        if(exposer.isExposed()){
-            logger.warn("exposer = {}",exposer);
+        Exposure exposure = activityService.exportActivityUrl(id);
+        if(exposure.isExposed()){
+            logger.warn("exposure = {}",exposure);
             long phone = 1234567892;
-            String md5 = exposer.getMd5();
+            String md5 = exposure.getMd5();
             try{
-                ProductExecution execution = productService.executeProduct(id,phone,md5);
+                ActivityExecution execution = activityService.executeActivity(id,phone,md5);
                 logger.info("execution={}",execution);
-            }catch (ProductCloseExcption e){
+            }catch (ActivityCloseException e){
                 logger.error(e.getMessage());
             }catch (RepeatKillException e){
                 logger.error(e.getMessage());
             }
 
         }else{
-            logger.warn("exposer = {}",exposer);
+            logger.warn("exposure = {}",exposure);
         }
 
     }

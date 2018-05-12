@@ -5,20 +5,20 @@ import java.util.Date;
 /**
  * Created by shuai on 2016/12/29.
  */
-public class Product {
-    private Long productId;
+public class Activity {
+    private Long activityId;
     private String name;
     private int number;
     private Date startTime;
     private Date endTime;
     private Date createTime;
 
-    public Long getProductId() {
-        return productId;
+    public Long getActivityId() {
+        return activityId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setActivityId(Long activityId) {
+        this.activityId = activityId;
     }
 
     public String getName() {
@@ -63,8 +63,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "productId=" + productId +
+        return "Activity{" +
+                "activityId=" + activityId +
                 ", name='" + name + '\'' +
                 ", number=" + number +
                 ", startTime=" + startTime +

@@ -7,7 +7,7 @@ package cn.shuai.tissot.exception;
 /**
  * 重复秒杀异常（运行期异常）
  */
-public class RepeatKillException extends ProductException{
+public class RepeatKillException extends ActivityException {
 
     public RepeatKillException(String message) {
         super(message);

@@ -9,16 +9,16 @@ import org.apache.ibatis.annotations.Param;
 public interface SuccessRecordDao {
     /**
      * 插入操作明细
-     * @param productId
+     * @param activityId
      * @param userPhone
      * @return
      */
-    int insertSuccessOperate(@Param("productId") long productId, @Param("userPhone") long userPhone);
+    int insertSuccessOperate(@Param("activityId") long activityId, @Param("userPhone") long userPhone);
 
     /**
      * 根据id查询
-     * @param porductId
+     * @param activityId
      * @return
      */
-    SuccessRecord queryByIdWithProduct(@Param("productId") long porductId,@Param("userPhone")long userPhone);
+    SuccessRecord queryByIdWithActivity(@Param("activityId") long activityId,@Param("userPhone")long userPhone);
 }

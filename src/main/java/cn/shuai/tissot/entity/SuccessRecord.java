@@ -6,20 +6,20 @@ import java.util.Date;
  * Created by shuai on 2016/12/29.
  */
 public class SuccessRecord {
-    private long productId;
+    private long activityId;
     private long userPhone;
     private short state;
     private Date createTime;
 
     //多对一
-    private Product product;
+    private Activity activity;
 
-    public long getProductId() {
-        return productId;
+    public long getActivityId() {
+        return activityId;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setActivityId(long activityId) {
+        this.activityId = activityId;
     }
 
     public long getUserPhone() {
@@ -46,22 +46,22 @@ public class SuccessRecord {
         this.createTime = createTime;
     }
 
-    public Product getProduct() {
-        return product;
+    public Activity getActivity() {
+        return activity;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
     public String toString() {
         return "SuccessRecord{" +
-                "productId=" + productId +
+                "activityId=" + activityId +
                 ", userPhone=" + userPhone +
                 ", state=" + state +
                 ", createTime=" + createTime +
-                ", product=" + product +
+                ", activity=" + activity +
                 '}';
     }
 }
