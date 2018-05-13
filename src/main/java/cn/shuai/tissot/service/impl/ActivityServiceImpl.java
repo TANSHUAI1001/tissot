@@ -81,13 +81,15 @@ public class ActivityServiceImpl implements ActivityService {
         //减库存，记录
         Date nowTime = new Date();
         try {
-            int updateCount = activityDao.reduceNumber(activityId, nowTime);
-            if (updateCount <= 0) {
-                throw new ActivityCloseException("activity has been closed");
+            // 优化 => 调整顺序，先insert再减库存
+            int insertCont = successRecordDao.insertSuccessOperate(activityId, userPhone);
+            if (insertCont <= 0) {
+                throw new RepeatKillException("can not repeat kill");
             } else {
-                int insertCont = successRecordDao.insertSuccessOperate(activityId, userPhone);
-                if (insertCont <= 0) {
-                    throw new RepeatKillException("can not repeat kill");
+                // 减库存需用行级锁，sql变成串行，放在后面，减少读取数据库网络延迟导致的时间消耗
+                int updateCount = activityDao.reduceNumber(activityId, nowTime);
+                if (updateCount <= 0) {
+                    throw new ActivityCloseException("activity has been closed");
                 } else {
                     SuccessRecord successRecord = successRecordDao.queryByIdWithActivity(activityId, userPhone);
                     return new ActivityExecution(activityId, ActivityStatEnum.SUCCESS, successRecord);

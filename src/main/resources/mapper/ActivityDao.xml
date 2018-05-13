@@ -27,4 +27,11 @@
         order by create_time desc
         limit #{offset},#{limit}
     </select>
+
+    <!-- 使用map参数，mybatis会将结果注入到对应的属性中 -->
+    <!--
+    <select id="killByProcedure" statementType="CALLABLE">
+        CALL execute_seckill(1003,13567890787,now(),@r_result);
+    </select>
+    -->
 </mapper>

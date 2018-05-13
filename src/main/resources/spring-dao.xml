@@ -46,4 +46,10 @@
         <!-- 给出扫描DAO接口包 -->
         <property name="basePackage" value="cn.shuai.tissot.dao"/>
     </bean>
+
+    <!-- RedisDao -->
+    <bean id="redisDao" class="cn.shuai.tissot.dao.cache.RedisDao">
+        <constructor-arg index="0" value="localhost"/>
+        <constructor-arg index="1" value="6379" />
+    </bean>
 </beans>
