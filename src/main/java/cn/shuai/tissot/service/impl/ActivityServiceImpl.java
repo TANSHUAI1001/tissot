@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class ActivityServiceImpl implements ActivityService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     //注入service依赖
-    @Autowired // @Resource, @InJect
+    @Resource// @Autowired , @Inject
     private ActivityDao activityDao;
 
-    @Autowired
+    @Resource
     private SuccessRecordDao successRecordDao;
 
     private final String salt = "suibianxieyixie123!@#$%^&*()";
@@ -82,7 +83,7 @@ public class ActivityServiceImpl implements ActivityService {
         try {
             int updateCount = activityDao.reduceNumber(activityId, nowTime);
             if (updateCount <= 0) {
-                throw new ActivityCloseException("activity han been closed");
+                throw new ActivityCloseException("activity has been closed");
             } else {
                 int insertCont = successRecordDao.insertSuccessOperate(activityId, userPhone);
                 if (insertCont <= 0) {
@@ -96,12 +97,13 @@ public class ActivityServiceImpl implements ActivityService {
             throw e1;
         }catch (RepeatKillException e2){
             throw e2;
+        }catch (ActivityException e3){
+            throw e3;
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             //所有编译期期异常转化为运行期异常。
             throw new ActivityException("inner error:"+e.getMessage());
         }
-//        return null;
     }
 
     private String getMd5(long activityId){

@@ -37,3 +37,4 @@ KEY idx_create_time(create_time)
 
 -- 可查看表的创建过程以及注释
 # show create table activity\G
+
