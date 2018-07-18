@@ -843,7 +843,7 @@ var _router2 = _interopRequireDefault(_router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var main = document.createElement("div");
+var main = document.getElementById("main");
 _reactDom2.default.render(_react2.default.createElement(_router2.default, null), main);
 
 /***/ }),
@@ -19524,11 +19524,16 @@ var RootRoutes = function (_React$Component) {
     }
 
     _createClass(RootRoutes, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            console.log("did mount");
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                null,
+                "h1",
+                { style: { textAlign: "center" } },
                 " hello "
             );
         }

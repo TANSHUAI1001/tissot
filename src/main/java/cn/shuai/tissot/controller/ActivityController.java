@@ -51,13 +51,18 @@ public class ActivityController {
     private ActivityService activityService;
 
     @RequestMapping(value = "/welcome",method = RequestMethod.GET)
-    public String getIndex(){
+    public String getWelcome(){
         return "/welcome";
     }
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public String getTest(){
         return "/test";
+    }
+
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String getIndex(){
+        return "/index";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
